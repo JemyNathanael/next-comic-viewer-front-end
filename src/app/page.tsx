@@ -1,7 +1,7 @@
-import Image from "next/image";
+import NavbarShadCn from "@/components/NavbarShadCn";
 
 export default function Home() {
   return (
-    <h1>Hello World</h1>
+     <NavbarShadCn />
   );
 }
