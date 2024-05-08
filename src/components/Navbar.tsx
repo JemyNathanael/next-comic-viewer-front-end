@@ -1,45 +1,73 @@
-import React from 'react'
-import { Search, Menu } from 'lucide-react'
-import Link from 'next/link'
+"use client";
 
-type Props = {}
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@radix-ui/react-navigation-menu";
+import { MenuIcon, Search } from "lucide-react";
+import React, { useState } from "react";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 
-const Navbar = (props: Props) => {
-    return (
-        <div className='bg-black text-white text-sm font-bold flex items-center justify-between md:justify-between p-2 gap-2'>
-            <div className='flex items-center md:gap-8 gap-2'>
-                <h1>NextDoujin</h1>
-                <div className='flex gap-2'>
-                    <div className='flex rounded overflow-hidden '>
-                        <input placeholder='Search doujin...' type="text" className='w-4/5 md:w-96 px-2' />
-                        <div className='bg-pink-500 flex items-center p-2'>
-                            <Search />
-                        </div>
-                    </div>
-                    <div className='bg-gray-500 radius rounded p-2 md:hidden'>
-                        <Menu />
-                    </div>
-                </div>
-                <div className='hidden md:flex md:gap-6'>
-                    <Link href={'/random'}>Random</Link>
-                    <Link href={'/random'}>Tags</Link>
-                    <Link href={'/random'}>Artists</Link>
-                    <Link href={'/random'}>Characters</Link>
-                    <Link href={'/random'}>Parodies</Link>
-                    <Link href={'/random'}>Groups</Link>
-                </div>
+interface NavbarProps {}
 
-            </div>
-            <div className='hidden md:flex gap-2 md:text-white'>
-                <div className='md:p-3 rounded-md'>
-                    <p>Sign In</p>
-                </div>
-                <div className='md:bg-pink-500 md:p-3 rounded-md'>
-                    <p>Register</p>
-                </div>
-            </div>
-        </div>
-    )
-}
+const Navbar = (props: NavbarProps) => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  return (
+    <>
+      <NavigationMenu className="p-3 bg-[#171717]">
+        <NavigationMenuList className="lg:flex lg:flex-col lg:items-center lg:gap-2">
+          <NavigationMenuItem className="flex justify-center lg:items-center lg:w-full lg:gap-8">
+            <NavigationMenuLink
+              href="/"
+              className="text-pink-400 font-bold text-xl lg:text-2xl"
+            >
+              Next Doujin
+            </NavigationMenuLink>
+            <NavigationMenuList className="hidden lg:flex lg:gap-4 lg:text-white lg:font-bold ">
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/">Home</NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/types">Types</NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="/genres">Genres</NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink href="authors">Author</NavigationMenuLink>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenuItem>
+          <NavigationMenuItem className="flex gap-4 items-center justify-center w-full">
+            <Button className="p-1 border rounded-md lg:hidden">
+              <MenuIcon
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-white"
+                size={24}
+              />
+            </Button>
+            <Input className="text-white" size={24} type="text" />
+            <Button className="p-1 border rounded-md">
+              <Search className="text-white" size={24} />
+            </Button>
+          </NavigationMenuItem>
+          {isMenuOpen && (
+            <NavigationMenuItem className="w-full h-screen flex flex-col grow bg-[#171717] text-white font-bold text-md p-3">
+              <NavigationMenuLink>Home</NavigationMenuLink>
+              <NavigationMenuLink>Types</NavigationMenuLink>
+              <NavigationMenuLink>Genres</NavigationMenuLink>
+              <NavigationMenuLink>Authors</NavigationMenuLink>
+            </NavigationMenuItem>
+          )}
+        </NavigationMenuList>
+      </NavigationMenu>
+    </>
+  );
+};
 
-export default Navbar
+export default Navbar;
