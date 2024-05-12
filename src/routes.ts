@@ -4,4 +4,4 @@ export const authRoutes = ["/auth/login", "/auth/register"];
 
 export const apiAuthRoute = "/api/auth";
 
-export const DEFAULT_LOGIN_REDIRECT = "/settings";
+export const DEFAULT_LOGIN_REDIRECT = "/";

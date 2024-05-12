@@ -113,10 +113,7 @@ const LoginForm = (props: LoginFormType) => {
               </Button>
               <div className="flex gap-1">
                 <p>Don't have an account?</p>
-                <Link
-                  href="/api/auth/register"
-                  className="mx-1 text-purple-400"
-                >
+                <Link href="/auth/register" className="mx-1 text-purple-400">
                   register
                 </Link>
               </div>

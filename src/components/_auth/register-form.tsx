@@ -135,7 +135,7 @@ const RegisterForm = (props: RegisterFormType) => {
               </Button>
               <div className="flex gap-1">
                 <p>Already have an account?</p>
-                <Link href="/api/auth/login" className="text-purple-400">
+                <Link href="/auth/login" className="text-purple-400">
                   login
                 </Link>
               </div>
