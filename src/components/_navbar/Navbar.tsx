@@ -2,16 +2,19 @@
 
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "@radix-ui/react-navigation-menu";
 import { MenuIcon, Search } from "lucide-react";
 import React, { useState } from "react";
-import { Input } from "./ui/input";
-import { Button } from "./ui/button";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import SignedIn from "../_auth/signed-in";
+import SignInButton from "../_auth/sign-in-button";
+import SignedOut from "../_auth/signed-out";
+import SignOutButton from "../_auth/sign-out-button";
+import { auth } from "@/lib/auth";
 
 interface NavbarProps {}
 
@@ -24,7 +27,7 @@ const Navbar = (props: NavbarProps) => {
           <NavigationMenuItem className="flex justify-center lg:items-center lg:w-full lg:gap-8">
             <NavigationMenuLink
               href="/"
-              className="text-pink-400 font-bold text-xl lg:text-2xl"
+              className="text-purple-400 font-bold text-xl lg:text-2xl"
             >
               Next Doujin
             </NavigationMenuLink>
